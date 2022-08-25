@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 16:44:39 by rmount            #+#    #+#             */
-/*   Updated: 2022/08/24 21:29:01 by rmount           ###   ########.fr       */
+/*   Created: 2022/08/25 15:25:44 by rmount            #+#    #+#             */
+/*   Updated: 2022/08/25 15:25:48 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *src);
+int	 ft_strlen(const char *str);
 
 #endif

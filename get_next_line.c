@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 15:38:41 by rmount            #+#    #+#             */
-/*   Updated: 2022/08/24 21:28:05 by rmount           ###   ########.fr       */
+/*   Created: 2022/08/25 15:25:58 by rmount            #+#    #+#             */
+/*   Updated: 2022/08/25 15:26:18 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,47 +22,52 @@ static char *get_leftovers(char *line)
    bytes_read is a counter for the number of bytes we read
    floor_tile is temp storage - like a sim. or me.
 
-    1. bytes_read is initialised to 1 to ensure the following while loop
-    is entered.
+	1. bytes_read is initialised to 1 to ensure the following while loop
+	is entered.
 
-    2. while loop remains true as long as bytes_read does not equal zero.
-    if bytes_read becomes equal to zero, it means we have reached the end of
-    the file or ??
+	2. while loop remains true as long as bytes_read does not equal zero.
+	if bytes_read becomes equal to zero, it means we have reached the end of
+	the file or ???? TO DO
 
-    3. bytes_read is intialised with the return of the read function passing
-    fd, buffer and BUFFER_SIZE which returns an integer of the number of bytes
-    it was able to read.
+	3. bytes_read is intialised with the return of the read function passing
+	fd, buffer and BUFFER_SIZE which returns an integer of the number of bytes
+	it was able to read. The read function takes the file descriptor, the buffer 
+	pointer and BUFFER_SIZE and writes BUFFER_SIZE number of bytes from the 
+	file matching the fd to the the buffer pointer.  
 
-    4. if bytes_read equals -1 it means that there was an error calling the
-    read function and read_up_to_buffer will return NULL to get_next_line.
+	4. if bytes_read equals -1 it means that there was an error calling the
+	read function and read_up_to_buffer will return NULL to get_next_line.
 
-    5. if bytes_read equals zero, it means we have reached the end of the
-    file we are reading, in which case we break out of the loop and pick up
-    at the next line of code outside the else if.
+	5. if bytes_read equals zero, it means we have reached the end of the
+	file we are reading, in which case we break out of the loop and pick up
+	at the next line of code outside the else if.
 
    6. buffer at index bytes_read is set to null as we need to assign 
-   buffer a null terminating character.
+   it a null terminating character to show where the line ends.
+
+   7. 
 
 */
+
 static char *read_up_to_buffer(int fd, char *buffer, char *backlog)
 {
-    int bytes_read;
-    char *floor_tile;
+	int bytes_read;
+	char *floor_tile;
 
-    bytes_read = 1;
-    while (bytes_read !=0) {
-        bytes_read = read(fd, buffer, BUFFER_SIZE);
-        if (bytes_read == -1) {
-            return (NULL);
-        }
-        else if (bytes_read == 0) {
-            break;
-        }
-        buffer[bytes_read] = '\0';
-        if (!backlog) {
-            backlog = ft_strdup("");
-        }
-    }
+	bytes_read = 1;
+	while (bytes_read !=0) {
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1) {
+			return (NULL);
+		} 
+		else if (bytes_read == 0) {
+			break;
+		}
+		buffer[bytes_read] = '\0';
+		if (!backlog) {
+			backlog = ft_strdup("");
+		}
+	}
 }
 
 /* This function takes in the file descriptor of a file to read from.
@@ -105,28 +110,29 @@ static char *read_up_to_buffer(int fd, char *buffer, char *backlog)
    8. backlog is initialised with the return from the function 
    get_leftovers, which is passed the line variable when called.
 */
+
 char *get_next_line(int fd)
 {
-    char        *line;
-    char        *buffer;
-    static char *backlog;
+	char		*line;
+	char		*buffer;
+	static char *backlog;
 
-    if ((fd < 0) || (BUFFER_SIZE <= 0))
-    {
-        return (NULL);
-    }
-    buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-    if (!buffer)
-    {
-        return (NULL);
-    }
-    line = read_up_to_buffer(fd, buffer, backlog);
-    free(buffer);
-    buffer = NULL;
-    if (!line)
-    {
-        return (NULL);
-    }
-    backlog = get_leftovers(line);
-    return (line);
+	if ((fd < 0) || (BUFFER_SIZE <= 0))
+	{
+		return (NULL);
+	}
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+	{
+		return (NULL);
+	}
+	line = read_up_to_buffer(fd, buffer, backlog);
+	free(buffer);
+	buffer = NULL;
+	if (!line)
+	{
+		return (NULL);
+	}
+	backlog = get_leftovers(line);
+	return (line);
 }
