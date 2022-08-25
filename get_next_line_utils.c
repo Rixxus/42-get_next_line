@@ -6,7 +6,7 @@
 /*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:22:11 by rmount            #+#    #+#             */
-/*   Updated: 2022/08/25 16:02:40 by rmount           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:26:09 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,29 +68,31 @@ char	*ft_strdup(const char *src)
 		i++;
 	}
 	new[i] = '\0';
-
-
+	return (new);
 }
 
 char	*ft_strjoin(char const *s1, const char *s2)
 {
-	char	*newstring;
+	char	*new;
 	int	 i;
 	int	 j;
 
-	if (!s1 || !s2) 
-		return (NULL);
-	newstring = (char *) malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) +1));
-	if (!newstring)
-		return (NULL);
 	i = 0;
 	j = 0;
+	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!new)
+		return (NULL);
 	while (s1[i])
-		newstring[j++] = s1[i++];
-		i = 0;
-	while (s2[i])
-		newstring[j++] = s2[i++];
-	newstring[j] = '\0';
-	return (newstring);
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		new[i + j] = s2[j];
+		j++;
+	}
+	new[i + j] = '\0';
+	return (new);
 }
 
