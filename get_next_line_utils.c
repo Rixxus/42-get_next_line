@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:22:11 by rmount            #+#    #+#             */
-/*   Updated: 2022/08/25 16:26:09 by rmount           ###   ########.fr       */
+/*   Updated: 2022/08/28 16:22:31 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/* 
+*/
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *substring;
-	size_t i;
-	size_t j;
+	char	*substring;
+	size_t	i;
+	size_t	j;
 
 	j = 0;
 	i = 0;
 	substring = malloc(sizeof(char) * (len + 1));
-	if (substring == 0) {
+	if (substring == 0)
+	{
 		return (NULL);
 	}
-	while (s[i]) 
+	while (s[i])
 	{
 		if (i >= start && j < len)
 		{
@@ -37,9 +41,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substring);
 }
 
-int  ft_strlen(const char *str)
+/* This function takes a char pointer and counts the length of a string.
+*/
+int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -49,6 +55,10 @@ int  ft_strlen(const char *str)
 	return (i);
 }
 
+/* This function takes a char pointer and creates a null-terminating 
+	copy which is returned. If the malloc fails, the function will return 
+	NULL instead.
+*/
 char	*ft_strdup(const char *src)
 {
 	char	*new;
@@ -58,11 +68,11 @@ char	*ft_strdup(const char *src)
 	i = 0;
 	size = ft_strlen(src);
 	new = malloc(sizeof(*new) * (size + 1));
-	if (new == 0) 
+	if (!new)
 	{
-		return (0);
+		return (NULL);
 	}
-	while (src[i] != '\0')
+	while (src[i])
 	{
 		new[i] = src[i];
 		i++;
@@ -71,11 +81,15 @@ char	*ft_strdup(const char *src)
 	return (new);
 }
 
+/* This function takes two char pointers and creates a null-terminating
+	concatenation of the two strings, which is returned. If the malloc
+	fails, the function returns NULL.
+*/
 char	*ft_strjoin(char const *s1, const char *s2)
 {
 	char	*new;
-	int	 i;
-	int	 j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -96,3 +110,5 @@ char	*ft_strjoin(char const *s1, const char *s2)
 	return (new);
 }
 
+/*
+*/

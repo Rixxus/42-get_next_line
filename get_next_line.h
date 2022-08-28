@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:25:44 by rmount            #+#    #+#             */
-/*   Updated: 2022/08/25 16:36:35 by rmount           ###   ########.fr       */
+/*   Updated: 2022/08/28 16:22:32 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);
-int     ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 
 #endif
